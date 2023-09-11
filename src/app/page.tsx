@@ -6,20 +6,23 @@ import useWordleStore from "@/store/useWordleStore";
 import { getRandomWord } from "@/utils/wordle-utils";
 import InfoModal from "@/components/modals/infoModal";
 import StatsModal from "@/components/modals/statsModal";
-import Countdown from "react-countdown";
+import useInfoModal from "@/hooks/useInfoModal";
 
 export default function Home() {
-  const { word, setWord } = useWordleStore();
+  const { word, setWord, firstLoad, setFirstLoad } = useWordleStore();
+  const infoModal = useInfoModal();
 
   useEffect(() => {
     setWord(getRandomWord());
+
+    if (firstLoad) {
+      console.log("first load");
+      infoModal.onOpen();
+      setFirstLoad();
+      setWord(getRandomWord());
+    }
   }, []);
-  const count = (
-    <Countdown
-      date={Date.now() + 10000}
-      onComplete={() => handleIsComplete()}
-    />
-  );
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 text-white text-center bg-darkBg ">
       <InfoModal />

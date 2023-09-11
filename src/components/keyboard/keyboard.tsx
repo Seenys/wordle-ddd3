@@ -11,7 +11,6 @@ export const Keyboard: FC<KeyboardProps> = ({
   onClick: onClickProps,
   usedKeys: usedKeys,
 }) => {
-  console.log(usedKeys);
   const onClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const { textContent, innerHTML } = e.currentTarget;
 

@@ -7,7 +7,7 @@ interface statsModalStore {
 }
 
 const useStatsModal = create<statsModalStore>((set) => ({
-  isOpen: true,
+  isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }));

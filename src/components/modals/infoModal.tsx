@@ -5,13 +5,13 @@ import useInfoModal from "@/hooks/useInfoModal";
 // Components
 import Modal from "@/components/shared/modal";
 import { Cell } from "@/components/grid/cell";
+import useWordleStore from "@/store/useWordleStore";
 
 type Props = {};
 
 const InfoModal = (props: Props) => {
   const infoModal = useInfoModal();
-
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { playState } = useWordleStore();
 
   const onSubmit = (): void => {
     infoModal.onClose();
@@ -78,7 +78,6 @@ const InfoModal = (props: Props) => {
 
   return (
     <Modal
-      disabled={isLoading}
       title="Cómo jugar"
       actionLabel="!JUGAR¡"
       onSubmit={onSubmit}

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Char, LetterState, usedKeys } from "@/models/wordle";
 import useStatsModal from "@/hooks/useStatsModal";
+import useWordleStore from "@/store/useWordleStore";
 
 const useWordle = (solution: string) => {
-  const [turn, setTurn] = useState<number>(0);
   const [currentGuess, setCurrentGuess] = useState<string>("");
   const [guesses, setGuesses] = useState<Char[][]>([...Array(5)]); // each guess is an array
   const [history, setHistory] = useState<string[]>([]); // each guess is a string
@@ -11,6 +11,7 @@ const useWordle = (solution: string) => {
   const [usedKeys, setUsedKeys] = useState<usedKeys>({});
 
   const statsModal = useStatsModal();
+  const { turn, setTurn } = useWordleStore();
 
   const formatGuess = (): Char[] => {
     let solutionArray: string[] = [...solution];
@@ -47,7 +48,7 @@ const useWordle = (solution: string) => {
       return newGuesses;
     });
     setHistory((prev: string[]) => [...prev, currentGuess]);
-    setTurn((prev: number) => prev + 1);
+    setTurn();
 
     setUsedKeys((prevUsedKeys) => {
       formattedGuess.forEach((l, index) => {
@@ -90,7 +91,6 @@ const useWordle = (solution: string) => {
     if (guess === "Enter") {
       if (turn >= 5) {
         console.log("you used all your turns");
-        statsModal.onOpen("loss");
         return;
       }
       if (history.includes(currentGuess)) {

@@ -1,27 +1,32 @@
-import { BsQuestionCircleFill } from "react-icons/bs";
-import { RiBarChartBoxFill } from "react-icons/ri";
-
+// React imports
 import { FC, useState } from "react";
-import DarkModeToggle from "react-dark-mode-toggle";
+// Hooks
 import useStatsModal from "@/hooks/useStatsModal";
 import useInfoModal from "@/hooks/useInfoModal";
-import statsModal from "@/components/modals/statsModal";
+// icons
+import { RiBarChartBoxFill } from "react-icons/ri";
+import { BsQuestionCircleFill } from "react-icons/bs";
+import Button from "../shared/button";
 
 interface HeaderProps {
   handleDarkMode: (isDark: boolean) => void;
+  title: string;
 }
 
-export const Header: FC<HeaderProps> = ({ handleDarkMode }) => {
-  const [theme, setTheme] = useState(() => false);
+export const Header: FC<HeaderProps> = ({
+  handleDarkMode,
+  title = "wordle",
+}) => {
+  const [theme, setTheme] = useState<boolean>(false);
   const statsModal = useStatsModal();
   const infoModal = useInfoModal();
   const themeToggler = () => {
-    !theme ? setTheme(true) : setTheme(false);
+    setTheme(!theme);
     handleDarkMode(theme);
   };
   return (
     <>
-      <div className=" flex flex-row w-full max-w-[638px] h-[84px] bg-darkBgKeyboard justify-between items-center  rounded-lg mb-16">
+      <div className=" flex flex-row w-full max-w-[638px] h-[84px] dark:bg-darkBgKeyboard bg-red-50 justify-between items-center  rounded-lg mb-16">
         <div className="flex m-auto w-1/5 justify-start">
           <BsQuestionCircleFill
             className="text-2xl ml-3 cursor-pointer"
@@ -29,19 +34,14 @@ export const Header: FC<HeaderProps> = ({ handleDarkMode }) => {
           />
         </div>
         <div className="m-auto w-1/2 text-textColor font-bold text-2xl uppercase">
-          Wordle
+          {title}
         </div>
         <div className="flex flex-row m-auto w-1/5">
           <RiBarChartBoxFill
             className="flex text-2xl m-auto cursor-pointer"
             onClick={() => statsModal.onOpen()}
           />
-          <DarkModeToggle
-            checked={theme}
-            onChange={themeToggler}
-            size={60}
-            className="flex text-2xl m-auto cursor-pointer"
-          />
+          <Button onClick={themeToggler} label={theme ? "dark" : "ligth"} />
         </div>
       </div>
     </>

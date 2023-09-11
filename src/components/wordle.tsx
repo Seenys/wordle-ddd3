@@ -1,11 +1,15 @@
+// React Imports
 import { FC, useEffect, useState } from "react";
+// store
+import useWordleStore from "@/store/useWordleStore";
+// Hooks
 import useWordle from "@/hooks/useWordle";
+import useStatsModal from "@/hooks/useStatsModal";
+// components
 import { Grid } from "@/components/grid/grid";
 import { Keyboard } from "@/components/keyboard/keyboard";
 import { Header } from "@/components/header/header";
-import useStatsModal from "@/hooks/useStatsModal";
-import useStatsStore from "@/hooks/useStatsStore";
-import Countdown from "react-countdown";
+import Countdown from "./shared/countDown";
 
 interface WordleProps {
   guess: string;
@@ -31,31 +35,33 @@ export const Wordle: FC<WordleProps> = ({ guess }) => {
     handleMouseKey,
   } = useWordle(guess);
 
+  const wordleStore = useWordleStore();
   const statsModal = useStatsModal();
-  const statsStore = useStatsStore();
 
   useEffect(() => {
     window.addEventListener("keyup", handleKeyUp);
-    console.log("useEffect", guess);
     return () => window.removeEventListener("keyup", handleKeyUp);
   }, [handleKeyUp, guess]);
 
   useEffect(() => {
-    statsStore.setLoss();
     if (turn === 5) {
-      statsStore.setPlayState("loss");
+      wordleStore.setPlayState("loss");
     }
 
     if (isCorrect) {
-      statsStore.setPlayState("win");
-      statsStore.setWin();
+      wordleStore.setPlayState("win");
+      wordleStore.setWin();
+    } else {
+      wordleStore.setLoss();
     }
   }, [turn, isCorrect]);
 
   useEffect(() => {
-    statsStore.setAnswer(guess);
-    console.log(statsStore.answer, "here ege");
-  }, []);
+    if (wordleStore.playState === "win" || wordleStore.playState === "loss") {
+      statsModal.onOpen();
+    }
+  }, [wordleStore.playState]);
+
   const handleClick = (e: string) => {
     handleMouseKey(e);
   };
@@ -64,11 +70,13 @@ export const Wordle: FC<WordleProps> = ({ guess }) => {
     console.log(isDark);
     setIsDarkMode(isDark);
     localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+    // toggle dark mode
+    document.documentElement.classList.toggle("dark");
   };
 
   return (
     <>
-      <Header handleDarkMode={handleDarkMode} />
+      <Header handleDarkMode={handleDarkMode} title="wordle" />
       <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} />
       <Keyboard usedKeys={usedKeys} onClick={handleClick} />
     </>
