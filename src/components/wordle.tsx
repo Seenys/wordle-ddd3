@@ -9,7 +9,6 @@ import useStatsModal from "@/hooks/useStatsModal";
 import { Grid } from "@/components/grid/grid";
 import { Keyboard } from "@/components/keyboard/keyboard";
 import { Header } from "@/components/header/header";
-import Countdown from "./shared/countDown";
 
 interface WordleProps {
   guess: string;
