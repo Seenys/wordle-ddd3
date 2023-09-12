@@ -67,7 +67,6 @@ export const Wordle: FC<WordleProps> = ({ guess }) => {
   };
 
   const handleDarkMode = (isDark: boolean) => {
-    console.log(isDark);
     setIsDarkMode(isDark);
     localStorage.setItem("theme", isDarkMode ? "dark" : "light");
     // toggle dark mode

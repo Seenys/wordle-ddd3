@@ -7,12 +7,12 @@ type CellProps = {
 };
 
 export const Cell: FC<CellProps> = ({ value, styles }) => {
-  const stylesBg = styles ? styles : "bg-darkBgKeys";
+  const stylesBg = styles ? styles : "dark:bg-darkBgKeys bg-lightBgKeys";
 
   return (
     <div
       className={cn(
-        "w-[60px] h-[60px] flex items-center justify-center  m-1 text-2xl font-bold rounded uppercase",
+        "w-[60px] h-[60px] flex items-center justify-center  m-1 text-2xl font-bold rounded uppercase ",
         stylesBg
       )}
     >

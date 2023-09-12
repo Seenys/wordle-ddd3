@@ -25,7 +25,7 @@ export const Keyboard: FC<KeyboardProps> = ({
 
   return (
     <div
-      className={`flex flex-col bg-darkBgKeyboard w-full max-w-[638px] mt-16 p-[33px] rounded-xl`}
+      className={`flex flex-col dark:bg-darkBgKeyboard bg-lightBgKeyboard w-full max-w-[638px] mt-16 p-[33px] rounded-xl`}
     >
       {keyboardKeys.map((keyboardRow: string[], rowIndex: number) => {
         const keyRowStyles: { [key: string]: string } = {
@@ -43,7 +43,7 @@ export const Keyboard: FC<KeyboardProps> = ({
           >
             {keyboardRow.map((key: string, index: number) => {
               let styles: string =
-                "rounded w-[44px] h-[51px] font-bold uppercase flex-1 py-2 bg-darkBgKeys text-center items-center justify-center";
+                "rounded w-[44px] h-[51px] font-bold dark:bg-darkBgKeys bg-lightBgKeys uppercase flex-1 py-2  text-center items-center justify-center";
               let statusColor: string = colorStatus[usedKeys[key]];
               if (key === "") return;
               return (

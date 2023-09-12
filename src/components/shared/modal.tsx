@@ -54,6 +54,7 @@ const Modal: FC<ModalProps> = ({
         focus:outline-none
         bg-neutral-800
         bg-opacity-50
+        dark:text-lightText text-darkBg
     "
       >
         <div
@@ -71,7 +72,7 @@ const Modal: FC<ModalProps> = ({
           {/** Modal content */}
           <div
             className="
-            inline-block transform overflow-hidden rounded-lg bg-darkBg px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all dark:bg-darkBg lg:w-3/5 sm:my-8 w-full sm:max-w-3/4 sm:p-6 sm:align-middle
+            inline-block transform overflow-hidden rounded-lg dark:bg-darkBg bg-lightBgKeyboard px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all lg:w-3/5 sm:my-8 w-full sm:max-w-3/4 sm:p-6 sm:align-middle
             "
           >
             {/** Modal header */}
@@ -81,11 +82,13 @@ const Modal: FC<ModalProps> = ({
                 items-center
                 justify-center
                 p-10
-                rounded-t"
+                rounded-t
+
+                "
             >
               <h3
                 className="
-                    text-3xl font-bold leading-6 text-gray-900 dark:text-gray-100"
+                    text-3xl font-bold leading-6"
               >
                 {title}
               </h3>

@@ -26,22 +26,22 @@ export const Header: FC<HeaderProps> = ({
   };
   return (
     <>
-      <div className=" flex flex-row w-full max-w-[638px] h-[84px] dark:bg-darkBgKeyboard bg-red-50 justify-between items-center  rounded-lg mb-16">
+      <div className=" flex flex-row w-full max-w-[638px] h-[84px] dark:bg-darkBgKeyboard bg-lightBgKeyboard justify-between items-center  rounded-lg mb-16">
         <div className="flex m-auto w-1/5 justify-start">
           <BsQuestionCircleFill
-            className="text-2xl ml-3 cursor-pointer"
+            className="text-2xl dark:text-lightText text-gray ml-3 cursor-pointer"
             onClick={() => infoModal.onOpen()}
           />
         </div>
-        <div className="m-auto w-1/2 text-textColor font-bold text-2xl uppercase">
+        <div className="m-auto w-1/2 dark:text-lightText text-darkText font-bold text-2xl uppercase">
           {title}
         </div>
         <div className="flex flex-row m-auto w-1/5">
           <RiBarChartBoxFill
-            className="flex text-2xl m-auto cursor-pointer"
+            className="flex dark:text-lightText text-gray text-2xl m-auto cursor-pointer"
             onClick={() => statsModal.onOpen()}
           />
-          <Button onClick={themeToggler} label={theme ? "dark" : "ligth"} />
+          <Button onClick={themeToggler} label={theme ? "light" : "dark"} />
         </div>
       </div>
     </>

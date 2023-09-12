@@ -24,7 +24,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4 text-white text-center bg-darkBg ">
+    <main className="flex min-h-screen flex-col items-center justify-center p-4 text-white text-center dark:bg-darkBg ">
       <InfoModal />
       <StatsModal />
       {word && <Wordle guess={word} />}

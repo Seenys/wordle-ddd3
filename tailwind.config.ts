@@ -14,10 +14,15 @@ const config: Config = {
         yellow: "#CEB02C",
         gray: "#939B9F",
         darkBg: "#262B3C",
-
         darkBgKeys: "#565F7E",
-
+        lightBgKeys: "rgba(211, 214, 218, 1)",
         darkBgKeyboard: "rgba(218, 220, 224, 0.03)",
+        lightBgKeyboard: "rgba(243, 243, 243, 1)",
+        darkText: "#202537",
+        lightText: "#DADCE0",
+      },
+      fontFamily: {
+        sans: ["Roboto"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

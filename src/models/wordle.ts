@@ -5,9 +5,12 @@ export enum LetterState {
 }
 
 export const colorStatus: { [key: string]: string } = {
-  [LetterState.Absent]: "bg-gray border-gray",
-  [LetterState.Present]: "bg-yellow border-yellow",
-  [LetterState.Correct]: "bg-green border-green",
+  [LetterState.Absent]:
+    "dark:bg-gray  bg-gray border-gray dark:text-lightText text-white",
+  [LetterState.Present]:
+    "dark:bg-yellow bg-yellow border-yellow dark:text-lightText text-white",
+  [LetterState.Correct]:
+    "dark:bg-green bg-green border-green dark:text-lightText text-white",
 };
 
 export type Char = {
